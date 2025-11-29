@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAuth } from "../AuthContext";
+import AuthModal from "../components/AuthModal";
 import ImageUpload from "../components/ImageUpload";
 import ResultDisplay from "../components/ResultDisplay";
 import Loader from "../components/Loader";
@@ -12,6 +14,8 @@ export default function Home() {
   const [rawResponse, setRawResponse] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const { user, authLoading, logout } = useAuth();
 
   const handleFileSelected = (file) => {
     setError("");
@@ -67,9 +71,34 @@ export default function Home() {
               <div className="logo-text-main">Digit Identifier</div>
             </div>
           </div>
-          <div className="header-chip">
-            Built with React · Firebase · Gemini
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+
+            {!authLoading && !user && (
+              <button
+                type="button"
+                className="auth-header-btn"
+                onClick={() => setIsAuthOpen(true)}
+              >
+                Login / Sign up
+              </button>
+            )}
+
+            {!authLoading && user && (
+              <div className="auth-user-chip">
+                <span className="auth-user-email">
+                  {user.email || "Logged in"}
+                </span>
+                <button
+                  type="button"
+                  className="auth-logout-btn"
+                  onClick={logout}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
+
         </div>
       </header>
 
@@ -163,6 +192,7 @@ export default function Home() {
           <span>&copy; {new Date().getFullYear()} · Mozeel-V</span>
         </div>
       </footer>
+      <AuthModal open={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
     </>
   );
 }
