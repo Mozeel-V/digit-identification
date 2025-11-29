@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/assets/logo.png" alt="Digit Identifier Logo" style="width:100%; max-width:300px;">
+  <img src="frontend/src/assets/logo.png" alt="Digit Identifier Logo" style="width:100%; max-width:300px;">
 </p>
 
 <h1 align="center">Handwritten Digit Identifier</h1>
