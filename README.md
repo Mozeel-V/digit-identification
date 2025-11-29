@@ -1,11 +1,12 @@
+<h1 align="center">
+  <img src="frontend/src/assets/logo.png" alt="Digit Identifier Logo" width="45" style="vertical-align: middle; border-radius: 8px;" />
+  &nbsp; Handwritten Digit Identifier
+</h1>
+
 <p align="center">
-  <img src="frontend/src/assets/logo.png" alt="Digit Identifier Logo" style="width:100%; max-width:300px;">
-</p>
-
-<h1 align="center">Handwritten Digit Identifier</h1>
-
-A smart, AI‑powered web application that identifies handwritten digits (0–9) from uploaded images using Google Gemini.  
+A smart, AI-powered web application that identifies handwritten digits (0–9) from uploaded images using Google Gemini.<br/>
 This project includes a polished responsive UI, secure authentication, and a serverless backend deployed on Vercel.
+</p>
 
 ---
 
