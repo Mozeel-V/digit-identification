@@ -26,3 +26,7 @@ yarn-error.log*
 
 # Environment files (local configs)
 /.env.*
+
+chisquarextask0-7bdaac6814f0.json
+functions/testKey.js
+functions/index.js

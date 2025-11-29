@@ -1,0 +1,30 @@
+type User @table {
+  displayName: String!
+  email: String
+  photoUrl: String
+  createdAt: Timestamp!
+}
+
+type Image @table {
+  user: User
+  imageUrl: String!
+  fileName: String!
+  uploadedAt: Timestamp!
+  notes: String
+}
+
+type DetectionResult @table {
+  image: Image
+  detectedAt: Timestamp!
+  rawDetectionData: String
+}
+
+type DetectedObject @table {
+  detectionResult: DetectionResult
+  label: String!
+  confidence: Float!
+  x: Float!
+  y: Float!
+  width: Float!
+  height: Float!
+}

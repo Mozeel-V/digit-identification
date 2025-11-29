@@ -1,0 +1,70 @@
+mutation SeedDatabase @auth(level: PUBLIC, insecureReason: "This operation is for seeding the database with initial data and is safe to expose.") {
+  user_insertMany(data: [
+    {
+      id: "67eb2213-b339-4289-ace9-8c69c1a9026f",
+      createdAt: "2024-04-24T12:00:00Z",
+      displayName: "Demo User 1",
+      email: "demo1@example.com",
+      photoUrl: "https://example.com/avatar1.jpg"
+    },
+    {
+      id: "78cd3324-c44a-539a-bdf0-9d7ac2b0137g",
+      createdAt: "2024-04-24T13:00:00Z",
+      displayName: "Demo User 2",
+      email: "demo2@example.com",
+      photoUrl: "https://example.com/avatar2.jpg"
+    }
+  ])
+  image_insertMany(data: [
+    {
+      id: "89de4435-d55b-64aa-cee1-ae8bd3c1248h",
+      userId: "67eb2213-b339-4289-ace9-8c69c1a9026f",
+      fileName: "image1.jpg",
+      imageUrl: "https://example.com/image1.jpg",
+      uploadedAt: "2024-04-24T14:00:00Z",
+      notes: "First demo image"
+    },
+    {
+      id: "90ef5546-e66c-75bb-dff2-bf9ce4d2359i",
+      userId: "78cd3324-c44a-539a-bdf0-9d7ac2b0137g",
+      fileName: "image2.jpg",
+      imageUrl: "https://example.com/image2.jpg",
+      uploadedAt: "2024-04-24T15:00:00Z",
+      notes: "Second demo image"
+    }
+  ])
+  detectionResult_insertMany(data: [
+    {
+      id: "a1fa6657-f77d-86cc-eff3-ca0df5e3460j",
+      imageId: "89de4435-d55b-64aa-cee1-ae8bd3c1248h",
+      detectedAt: "2024-04-24T16:00:00Z",
+      rawDetectionData: "{}"
+    },
+    {
+      id: "b2gb7768-088e-97dd-f004-db1cef45571k",
+      imageId: "90ef5546-e66c-75bb-dff2-bf9ce4d2359i",
+      detectedAt: "2024-04-24T17:00:00Z",
+      rawDetectionData: "{}"
+    }
+  ])
+  detectedObject_insertMany(data: [
+    {
+      detectionResultId: "a1fa6657-f77d-86cc-eff3-ca0df5e3460j",
+      confidence: 0.9,
+      height: 0.1,
+      label: "object1",
+      width: 0.2,
+      x: 0.3,
+      y: 0.4
+    },
+    {
+      detectionResultId: "b2gb7768-088e-97dd-f004-db1cef45571k",
+      confidence: 0.8,
+      height: 0.2,
+      label: "object2",
+      width: 0.3,
+      x: 0.4,
+      y: 0.5
+    }
+  ])
+}

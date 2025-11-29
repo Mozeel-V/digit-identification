@@ -1,0 +1,41 @@
+mutation AddNewUser($displayName: String!, $email: String, $photoUrl: String) @auth(level: USER) {
+  user_insert(data: {displayName: $displayName, email: $email, photoUrl: $photoUrl, createdAt_expr: "request.time"})
+}
+
+query GetImageById($id: UUID!) @auth(level: USER) {
+  image(id: $id) {
+    id
+    imageUrl
+    fileName
+    notes
+    uploadedAt
+    detectionResults_on_image {
+      id
+      detectedAt
+      rawDetectionData
+      detectedObjects_on_detectionResult {
+        id
+        label
+        confidence
+        x
+        y
+        width
+        height
+      }
+    }
+  }
+}
+
+query ListAllImagesForCurrentUser @auth(level: USER) {
+  images(where: {userId: {eq_expr: "auth.uid"}}) {
+    id
+    fileName
+    imageUrl
+    notes
+    uploadedAt
+  }
+}
+
+mutation AddDetectionResultToImage($imageId: UUID!, $detectedAt: Timestamp!, $rawDetectionData: String) @auth(level: USER) {
+  detectionResult_insert(data: {imageId: $imageId, detectedAt: $detectedAt, rawDetectionData: $rawDetectionData})
+}
